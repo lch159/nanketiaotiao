@@ -59,6 +59,11 @@ public class UsersController {
         stdCookie.setMaxAge(0);
         Cookie idCookie = new Cookie("userid", null);
         idCookie.setMaxAge(0);
+
+        tokenCookie.setPath("/");
+        stdCookie.setPath("/");
+        idCookie.setPath("/");
+
         httpServletResponse.addCookie(tokenCookie);
         httpServletResponse.addCookie(stdCookie);
         httpServletResponse.addCookie(idCookie);
