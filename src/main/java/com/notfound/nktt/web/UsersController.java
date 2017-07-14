@@ -123,6 +123,10 @@ public class UsersController {
         stdCookie.setMaxAge(maxAge);
         idCookie.setMaxAge(maxAge);
 
+        tokenCookie.setPath("/");
+        stdCookie.setPath("/");
+        idCookie.setPath("/");
+
         httpServletResponse.addCookie(tokenCookie);
         httpServletResponse.addCookie(stdCookie);
         httpServletResponse.addCookie(idCookie);
