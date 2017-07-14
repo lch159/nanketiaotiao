@@ -1,158 +1,522 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>个人中心</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>个人中心</title>
 
-		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
-		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-		</script>
-	</head>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+</head>
 
-	<body>
-		<!--导航栏-->
-		<!--给nav添加navbar-static-top可使导航条随着页面向下滚动而消失-->
-		<!--给nav添加navbar-inverse可使导航条变黑-->
-		<!--
-        	作者：295169719@qq.com
-        	时间：2017-07-09
-        	描述：顶部导航栏
-        -->
-		<header>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-						<div class="container ">
-							<a class="navbar-brand" title="回到首页" href="Home.html"><img src=""></a>
-							<div class="navbar-header">
-								<ul class="nav navbar-nav navbar-right ">
-									<li>
-										<a href="Home.html">首页</a>
-									</li>
-									<li>
-										<a href="#">综合资讯</a>
-									</li>
-									<li>
-										<a href="#">我要卖</a>
-									</li>									
-									<li class="active">
-										<a href="#">个人中心</a>
-									</li>
-									<li>
-										<a href="">信息交流平台</a>
-									</li>
-								</ul>
-							</div>
-							<div>
-								<ul class="nav navbar-nav navbar-right">
-									<li>
-										<a href="login.html"><span class="glyphicon glyphicon-share-alt"></span>退出登录</a>
-									</li>
-								</ul>
-								<form class="navbar-form navbar-right">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="搜索">
-										<span class="input-group-btn">
+<body>
+<style>
+    .panel-noborder {
+        border: hidden;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 0px solid transparent;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    }
+
+    .production-image {
+        width: 140px;
+    }
+
+    .production-price {
+        font-weight: 600;
+        color: crimson;
+    }
+
+    .production-operation {
+        font-size: smaller;
+        font-style: italic;
+    }
+</style>
+<!--导航栏-->
+<!--给nav添加navbar-static-top可使导航条随着页面向下滚动而消失-->
+<!--给nav添加navbar-inverse可使导航条变黑-->
+<!--
+    作者：295169719@qq.com
+    时间：2017-07-09
+    描述：顶部导航栏
+-->
+<header>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" title="回到首页" href="index.html">LOGO</a>
+                    </div>
+                    <!--想藏起来的东西都放在这个标签下-->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="navbar-header">
+                            <ul class="nav navbar-nav navbar-right ">
+                                <li>
+                                    <a href="index.html">首页</a>
+                                </li>
+                                <li>
+                                    <a href="#">综合资讯</a>
+                                </li>
+                                <li>
+                                    <a href="#">我要卖</a>
+                                </li>
+                                <li class="active">
+                                    <a href="user_home.html">个人中心</a>
+                                </li>
+                                <li>
+                                    <a href="">信息交流平台</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="login.html"><span class="glyphicon glyphicon-share-alt"></span>退出登录</a>
+                                </li>
+                            </ul>
+                            <form class="navbar-form navbar-right">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="搜索">
+                                    <span class="input-group-btn">
 								<button class="btn btn-default" type="button">Go!
 								</button>
 							</span>
-									</div>
-								</form>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 
-		</header>
+</header>
+<div class="container">
+    <br />
 
-		<div class="container">
-			<br />
-
-			<div class="row">
-				<!--
-                	作者：295169719@qq.com
-                	时间：2017-07-09
-                	描述：分类列表
+    <div class="row">
+        <!--
+            作者：295169719@qq.com
+            时间：2017-07-09
+            描述：分类列表
+        -->
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!--
+                    作者：295169719@qq.com
+                    时间：2017-07-09
+                    描述：个人信息窗口
                 -->
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<!--
-                        	作者：295169719@qq.com
-                        	时间：2017-07-09
-                        	描述：个人信息窗口
-                        -->
 
-							<img src="img/3.jpg" width="75px" height="75px" class="img-responsive center-block">
-							<form class="navbar-form ">
-								<ul class="list-group ">
-									<div class="text-center">
+                    <img src="img/3.jpg" width="75px" height="75px" class="img-responsive center-block">
+                    <form class="navbar-form ">
+                        <ul class="list-group ">
+                            <div class="text-center">
+                                <font>欢迎进入个人中心 XXXX</font>
+                            </div>
+                        </ul>
+                        <hr/>
+                    </form>
+                </div>
 
-									<font >欢迎进入个人中心 XXXX</font>
-										</div>
+                <ul class="list-group" role="tablist">
+                    <a href="#user_info" role="tab" data-toggle="tab">
+                        <li class="btn-default list-group-item text-center " role="presentation">
+                            查看个人详情
+                        </li>
+                    </a>
+                        <a href="#published" role="tab" data-toggle="tab">
+                            <li class=" list-group-item text-center btn-default" role="presentation">
+                                我的发布
+                            </li>
+                        </a>
+                        <a href="#wantBuy" role="tab" data-toggle="tab">
+                            <li class=" list-group-item text-center btn-default" role="presentation">
+                                我想买的
+                            </li>
+                        </a>
+                        <a href="#security" role="tab" data-toggle="tab">
+                            <li class=" list-group-item text-center btn-default" role="presentation">
+                                账号安全
+                            </li>
+                        </a>
+                        <a href="#messages" role="tab" data-toggle="tab">
+                            <li class=" list-group-item text-center btn-default" role="presentation">
+                                我的消息
+                            </li>
+                        </a>
+                </ul>
+            </div>
+        </div>
+        <!--
+            作者：295169719@qq.com
+            时间：2017-07-09
+            描述：详细信息
+        -->
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="user_info">
+                            <div class="panel-body">
+                                <img src="img/3.jpg" width="75px" height="75px" class="img-responsive center-block">
+                                <div class="text-center">
+                                    <a href="#">点击上传</a>
+                                </div>
+                                <form class="navbar-form ">
+                                    <ul class="list-group ">
+                                        <hr/>
+                                        <span style="font-weight:600 ;font-size: larger;">基本资料:</span>
+                                        <li class="row list-group-item panel-noborder">
+                                            <div class="col-lg-2"></div>
+                                            <div class="input-group input-group-lg col-md-8 text-center">
+                                                学号：XXX
+                                            </div>
+                                        </li>
+                                        <hr/>
+                                        <span style="font-weight:600 ;font-size: larger;">联系方式:</span>
+                                        <div class="text-right"><button class="btn btn-default right-block"><span class="glyphicon glyphicon-pencil"></span>点击编辑</button></div>
+                                        <li class="row list-group-item panel-noborder">
+                                            <div class="col-lg-2"></div>
+                                            <div class="input-group input-group-lg col-md-8 text-center">
+                                                QQ：XXX
+                                            </div>
+                                        </li>
+                                        <li class="row list-group-item panel-noborder">
+                                            <div class="col-lg-2"></div>
+                                            <div class="input-group input-group-lg col-md-8 text-center">
+                                                手机号：XXX
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-2 text-center"></div>
+                                        <button type="button" class="btn btn-primary btn-lg col-md-8">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="published">
+                            <div class="panel-body" style="font-size:20px;font-style: inherit;">
+                                <div class="btn-group">
 
-								</ul>
-								<hr/>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">状态<span class="caret"></span> </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">正在出售</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已经售出</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已经下架</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">商品所在地<span class="caret"></span> </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">荔园山庄</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">湖畔公寓</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <table class="table table-hover">
 
-							</form>
+                                    <thead>
+                                    <tr>
+                                        <th>商品图片</th>
+                                        <th>商品名称</th>
+                                        <th>价格</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">编辑该商品</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">想买该商品用户</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除该商品</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">编辑该商品</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">想买该商品用户</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除该商品</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">编辑该商品</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">想买该商品用户</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除该商品</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="panel-body text-center">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#">&laquo;</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">4</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">5</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">&raquo;</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="wantBuy">
+                            <div class="panel-body" style="font-size:20px;font-style: inherit;">
+                                <div class="btn-group">
 
-						</div>
-						<ul class="list-group">
-							<a herf="#">
-							<li class="list-group-item btn-default">
-								<div class="text-center">查看个人资料</div>
-							</li>
-							</a>
-							<a herf="#">
-							<li class="list-group-item btn-default">
-								<div class="text-center">我的发布</div>
-							</li>
-							</a>
-							<a herf="#">
-							<li class="list-group-item btn-default">
-								<div class="text-center">我想买的</div>
-							</li>
-							</a>
-							<a herf="#">
-							<li class="list-group-item btn-default">
-								<div class="text-center">账号信息</div>
-							</li>
-							</a>
-							<a herf="#">
-							<li class="list-group-item btn-default">
-								<div class="text-center">我的消息</div>
-							</li>
-							</a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">状态<span class="caret"></span> </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">正在出售</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已经售出</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已经下架</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">商品所在地<span class="caret"></span> </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">荔园山庄</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">湖畔公寓</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <table class="table table-hover">
 
-						</ul>
-					</div>
-				</div>
-				<!--
-                	作者：295169719@qq.com
-                	时间：2017-07-09
-                	描述：详细信息
-                -->
-				<div class="col-md-9">
-					<div class="row">
-						<div class="col-md-12">
-							
+                                    <thead>
+                                    <tr>
+                                        <th>商品图片</th>
+                                        <th>商品名称</th>
+                                        <th>价格</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
 
-						</div>
-					</div>
-				</div>
-			</div>
-			
+                                                <li>
+                                                    <a href="#">查看联系方式</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除此订单</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
 
-	</body>
+                                                <li>
+                                                    <a href="#">查看联系方式</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除此订单</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/s7 edge.jpg" class="production-image"></td>
+                                        <td>s7edge</td>
+                                        <td class="production-price">3999</td>
+                                        <td> 已卖出</td>
+                                        <td class="production-operation">
+                                            <ul>
+
+                                                <li>
+                                                    <a href="#">查看联系方式</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">删除此订单</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="panel-body text-center">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#">&laquo;</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">4</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">5</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">&raquo;</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="security">
+                            <form class="navbar-form ">
+                                <hr/>
+                                <ul class="list-group ">
+                                    <li class="row list-group-item panel-noborder">
+                                    	
+                                        <div class="col-lg-2"></div>
+                                        <div class="input-group input-group-lg col-md-8">
+                                            <input type="password" class=" form-control " placeholder="请输入原始密码" />
+                                        </div>
+                                        
+                                    </li>
+                                    <li class="row list-group-item panel-noborder">
+                                    	
+                                        <div class="col-lg-2"></div>
+                                        <div class="input-group input-group-lg col-md-8">
+                                            <input type="password" class=" form-control " placeholder="请输入新密码" />
+                                        </div>
+                                         
+                                    </li>
+                                    <li class="row list-group-item panel-noborder">
+                                    	
+                                        <div class="col-lg-2"></div>
+                                        <div class="input-group input-group-lg col-md-8">
+                                            <input type="password" class=" form-control " placeholder="请确认密码" />
+                                        </div>
+                                         
+                                    </li>
+                                </ul>
+                                <hr/>
+                                <br />
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <button type="button" class="btn btn-primary btn-lg col-md-8">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="messages">敬请期待</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
 
 </html>

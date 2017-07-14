@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import static com.sun.javafx.tools.resource.DeployResource.Type.data;
+
 
 /**
 * Created by CodeGenerator on 2017/07/11.

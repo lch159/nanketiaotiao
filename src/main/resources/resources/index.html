@@ -10,17 +10,55 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+                $(function() {
+                    if(isLogin()) {
+                        $("#li-login").hide();
+                        $("#li-sign-up").hide();
+                    }
+                    else{
+                        $("#li-logout").hide();
+                    }
+                });
+				$(".li-class").click(function() {
+					$("#advertisement").hide("slow");
+					$("#collapseAdv").hide();
+				});
+				$(function() {
+					$('#seeMore').collapse({
+						toggle: false
+					})
+				});
+				$(function() {
+					$('#advertisement').collapse('show')
+				});
+                function isLogin() {
+                    return  getCookie("studentid") !== "";
+                }
+                function getCookie(cookieName){
+                    var cookieValue="";
+                    if (document.cookie && document.cookie !== '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = cookies[i];
+                            if (cookie.substring(0, cookieName.length + 2).trim() === cookieName.trim() + "=") {
+                                cookieValue = cookie.substring(cookieName.length + 2, cookie.length);
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+
+
+            });
+		</script>
 
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			$(function() {
-				$('#collapseFour').collapse({
-					toggle: false
-				})
-			});
-		</script>
 		<style>
 			.panel-noborder {
 				border: hidden;
@@ -31,57 +69,79 @@
 				-webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 				box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 			}
+			
+			.li-class {
+				cursor: pointer;
+			}
 		</style>
+
 		<!--
-        	作者：295169719@qq.com
-        	时间：2017-07-09
-        	描述：顶部导航栏
-        -->
+    作者：295169719@qq.com
+    时间：2017-07-09
+    描述：顶部导航栏
+-->
 		<header>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 						<div class="container ">
-							<a class="navbar-brand" title="回到首页" href="Home.html"><img src=""></a>
 							<div class="navbar-header">
-								<ul class="nav navbar-nav navbar-right ">
-									<li class="active">
-										<a href="index.html">首页</a>
-									</li>
-									<li>
-										<a href="#">综合资讯</a>
-									</li>
-									<li>
-										<a href="#">我要卖</a>
-									</li>
-
-									<li>
-										<a href="user_home.html">个人中心</a>
-									</li>
-									<li>
-										<a href="">信息交流平台</a>
-									</li>
-								</ul>
+								<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+								<a class="navbar-brand" title="回到首页" href="index.html">NKTT</a>
 							</div>
-							<div>
-								<ul class="nav navbar-nav navbar-right">
-									<li>
-										<a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
-									</li>
-									<li>
-										<a href="register.html"><span class="glyphicon glyphicon-user"></span> 注册</a>
-									</li>
-								</ul>
-								<form class="navbar-form navbar-right">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="搜索">
-										<span class="input-group-btn">
+
+							<!--想藏起来的东西都放在这个标签下-->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<div class="navbar-header">
+									<ul class="nav navbar-nav navbar-left ">
+										<li class="active">
+											<a href="index.html">首页</a>
+										</li>
+										<li>
+											<a href="#">综合资讯</a>
+										</li>
+										<li>
+											<a href="#">我要卖</a>
+										</li>
+
+										<li>
+											<a href="user_home.html">个人中心</a>
+										</li>
+										<li>
+											<a href="">信息交流平台</a>
+										</li>
+									</ul>
+								</div>
+								<div>
+									<ul class="nav navbar-nav navbar-right">
+										<li id="li-login">
+											<a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
+										</li>
+										<li id="li-sign-up">
+											<a href="register.html"><span class="glyphicon glyphicon-user"></span> 注册</a>
+										</li>
+										<li id="li-logout">
+											<a href="login.html"><span class="glyphicon glyphicon-share-alt"></span>退出登录</a>
+										</li>
+									</ul>
+									<form class="navbar-form navbar-right">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="搜索">
+											<span class="input-group-btn">
 								<button class="btn btn-default" type="button">Go!
 								</button>
 							</span>
-									</div>
-								</form>
+										</div>
+									</form>
+								</div>
 							</div>
+
 						</div>
 					</nav>
 				</div>
@@ -90,19 +150,19 @@
 		</header>
 
 		<!--
-        	作者：295169719@qq.com
-        	时间：2017-07-09
-        	描述：主界面
-        -->
+    作者：295169719@qq.com
+    时间：2017-07-09
+    描述：主界面
+-->
 		<div class="container">
-			<br />
+			<br/>
 
 			<div class="row">
 				<!--
-                	作者：295169719@qq.com
-                	时间：2017-07-09
-                	描述：分类列表
-                -->
+            作者：295169719@qq.com
+            时间：2017-07-09
+            描述：分类列表
+        -->
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body" style="font-size:16px;font-style: inherit;">
@@ -110,80 +170,78 @@
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a herf="#">分类1</a>
+								<a herf="#" class="li-class">分类1</a>
 							</li>
 							<li class="list-group-item">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+								<a id="btn-seeMore" data-toggle="collapse" data-parent="#accordion" href="#seeMore">
 									查看更多
 								</a>
 							</li>
-							<div id="collapseFour" class="panel-collapse collapse">
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
-								<li class="list-group-item">
-									<a herf="#">分类1</a>
-								</li>
+							<div id="seeMore" class="panel-collapse collapse">
 
 								<li class="list-group-item">
-									<a herf="#">分类1</a>
+									<a herf="#" class="li-class">分类1</a>
 								</li>
 								<li class="list-group-item">
-									<a herf="#">分类1</a>
+									<a herf="#" class="li-class">分类1</a>
 								</li>
 								<li class="list-group-item">
-									<a herf="#">分类1</a>
+									<a herf="#" class="li-class">分类1</a>
 								</li>
 								<li class="list-group-item">
-									<a herf="#">分类1</a>
+									<a herf="#" class="li-class">分类1</a>
 								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+								<li class="list-group-item">
+									<a herf="#" class="li-class">分类1</a>
+								</li>
+
 							</div>
 						</ul>
 					</div>
 				</div>
 				<!--
-                	作者：295169719@qq.com
-                	时间：2017-07-09
-                	描述：详细信息
-                -->
+            作者：295169719@qq.com
+            时间：2017-07-09
+            描述：详细信息
+        -->
 				<div class="col-md-9">
 
 					<!--
-                        	作者：295169719@qq.com
-                        	时间：2017-07-09
-                        	描述：广告滚动部分
-                        -->
-					<div class="row">
+                    作者：295169719@qq.com
+                    时间：2017-07-09
+                    描述：广告滚动部分
+                -->
+					<div class="row panel-collapse collapse" id="advertisement">
 						<div class="col-md-12">
 							<div class="panel-body" style="padding: 0px;">
 								<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -195,13 +253,13 @@
 									</ol>
 									<!-- 轮播（Carousel）项目 -->
 									<div class="carousel-inner">
-										<div class="item active" style="background:url(a.jpg); background-size:cover;">
+										<div class="item active" style="background-size:cover;">
 											<img src="img/1.jpg" alt="First slide">
 										</div>
-										<div class="item" style="background:url(a.jpg); background-size:cover;">
+										<div class="item" style=" background-size:cover;">
 											<img src="img/1.jpg" alt="Second slide">
 										</div>
-										<div class="item" style="background:url(a.jpg); background-size:cover;">
+										<div class="item" style=" background-size:cover;">
 											<img src="img/1.jpg" alt="Third slide">
 										</div>
 										<!---->
@@ -214,20 +272,23 @@
 							</div>
 						</div>
 					</div>
+
 					<!--
-                        	作者：295169719@qq.com
-                        	时间：2017-07-09
-                        	描述：商品展示界面
-                        -->
+                    作者：295169719@qq.com
+                    时间：2017-07-09
+                    描述：商品展示界面
+                -->
 					<div class="row">
 						<div class="panel panel-default panel-noborder">
-							<div class="panel-body" style="font-size:20px;font-style: inherit;">
-								<div class="btn-group">
+							<div class="panel-body">
+
+								<div class="btn-group col-md-10" style="font-size:20px;font-style: inherit;">
 									<button type="button" class="btn btn-default">最新发布</button>
 									<button type="button" class="btn btn-default">最热商品</button>
 									<button type="button" class="btn btn-default">价格</button>
 									<div class="btn-group">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">商品所在地<span class="caret"></span> </button>
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    商品所在地<span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li>
 												<a href="#">荔园山庄</a>
@@ -237,7 +298,14 @@
 											</li>
 										</ul>
 									</div>
+
 								</div>
+								<div class="text-right col-md-2">
+									<a id="collapseAdv" data-toggle="collapse" data-parent="#accordion" href="#advertisement">
+										收起广告↑
+									</a>
+								</div>
+
 							</div>
 							<ul class="list-group">
 								<li class="list-group-item">
@@ -245,11 +313,11 @@
 										<div class="col-md-3">
 											<div class="panel panel-default">
 												<div class="panel-heading">
-													<a href="#" class="text-right">商品名称</a>
+													<a href="production.html" class="text-right">商品名称</a>
 												</div>
 												<div class="panel-body"><img src="img/4.png">
 													<div class="panel-body">
-														<a href="#" class="text-right">商品描述</a>
+														<a href="production.html" class="text-right">商品描述</a>
 													</div>
 												</div>
 											</div>

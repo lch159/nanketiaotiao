@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>我要卖</title>
+
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+		</script>
+	</head>
+
+	<body>
+		<!--导航栏-->
+		<!--给nav添加navbar-static-top可使导航条随着页面向下滚动而消失-->
+		<!--给nav添加navbar-inverse可使导航条变黑-->
+		<header>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+						<div class="container ">
+							<div class="navbar-header">
+								<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+										data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" title="回到首页" href="index.html">LOGO</a>
+							</div>
+
+							<!--想藏起来的东西都放在这个标签下-->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<div class="navbar-header">
+									<ul class="nav navbar-nav navbar-left ">
+										<li >
+											<a href="index.html">首页</a>
+										</li>
+										<li>
+											<a href="#">综合资讯</a>
+										</li>
+										<li>
+											<a href="#">我要卖</a>
+										</li>
+
+										<li>
+											<a href="user_home.html">个人中心</a>
+										</li>
+										<li>
+											<a href="">信息交流平台</a>
+										</li>
+									</ul>
+								</div>
+								<div>
+									<ul class="nav navbar-nav navbar-right">
+										<li>
+											<a href="login.html"><span class="glyphicon glyphicon-share-alt"></span>退出登录</a>
+										</li>
+									</ul>
+									<form class="navbar-form navbar-right">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="搜索">
+											<span class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!
+								</button>
+							</span>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+					</nav>
+				</div>
+			</div>
+
+		</header>
+
+		<!--主体-->
+		<div class="container-fluid">
+			<br />
+			<br />
+			<div class="row">
+				<div class="container">
+					<div class="col-md-6">
+						<div class="row text-center">
+							<div class="panel-body">
+								<div class="img-thumbnail" style="width: 384px;height: 384px;">
+
+								</div>
+							</div>
+						</div>
+						<div class="row text-center">
+							<div class="panel-body">
+								<button class="btn btn-default img-thumbnail">														
+								<img src="img/plus.png">
+							</button>
+								<button class="btn btn-default img-thumbnail">														
+								<img src="img/plus.png">
+							</button>
+								<button class="btn btn-default img-thumbnail">														
+								<img src="img/plus.png">
+							</button>
+							</div>
+						</div>
+
+					</div>
+
+					<!--发布信息栏-->
+					<div class="col-md-6">
+						<form>
+							<div class="form-group">
+								<label for="productName">商品名称</label>
+								<input type="text" class="form-control" id="productName" placeholder="商品名称" maxlength="15">
+							</div>
+							<div class="form-group">
+								<label for="price">价格</label>
+								<input type="text" class="form-control" id="price" placeholder="价格">
+							</div>
+							<div class="form-group">
+								<label for="category">分类</label>
+								<div class="btn-group">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="category">请选择分类<span class="caret"></span> </button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">衣服</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="#">食品</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="#">文具</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="description">描述</label>
+								<textarea class="form-control" rows="8" id="description"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary btn-lg">立即发布</button>
+						</form>
+					</div>
+				</div>
+	</body>
+
+</html>
