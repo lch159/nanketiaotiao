@@ -38,6 +38,7 @@ public class UsersController {
 
     private static final String tokenName = "TOKEN";
     private static final String secretKey = "asfjasnfcZXMNclkmsalfas";
+    private static final int maxAge = 72000;
 //    private static int maxTime = 7200;
 
 
@@ -65,29 +66,63 @@ public class UsersController {
             return ResultGenerator.genFailResult("用户不存在！");
         }
         if (user.getPassword().equals(password)){
-            String tokenString = String.valueOf(jiami(user.getStudentid().toString()));
+            String tokenString = generateToken(user.getIuserSerialNumber(), user.getStudentid());
+
             tokenCookie.setValue(tokenString);
             stdCookie.setValue(user.getStudentid().toString());
             idCookie.setValue(user.getIuserSerialNumber().toString());
-            tokenCookie.setMaxAge(72000);
-            stdCookie.setMaxAge(72000);
-            idCookie.setMaxAge(72000);
+
+            tokenCookie.setMaxAge(maxAge);
+            stdCookie.setMaxAge(maxAge);
+            idCookie.setMaxAge(maxAge);
+
             httpServletResponse.addCookie(tokenCookie);
             httpServletResponse.addCookie(stdCookie);
             httpServletResponse.addCookie(idCookie);
-            Token token = new Token();
-            token.setUserid(user.getIuserSerialNumber());
-            token.setStudentid(user.getStudentid());
-            token.setTokenstring(tokenString);
-            if (tokenService.findBy("userid", user.getIuserSerialNumber()) == null){
-                tokenService.save(token);
-            }
-            else{
-                tokenService.update(token);
-            }
+
             return ResultGenerator.genSuccessResult(1, "登录成功!");
         }
         return ResultGenerator.genFailResult("密码错误！");
+    }
+
+    @PostMapping("/signup")
+    public Result signup(@CookieValue(value = "studentid", required = false) String stdValue,
+                         Users user,
+                         HttpServletResponse httpServletResponse){
+        if (stdValue != null){
+            return ResultGenerator.genFailResult("您已登录，请勿重复注册！");
+        }
+        if (user.getStudentid() == null){
+            return ResultGenerator.genFailResult("请输入学号！");
+        }
+        if (usersService.findBy("studentid", user.getStudentid()) != null){
+            return ResultGenerator.genFailResult("该学号已被注册！");
+        }
+        if (user.getPassword() == null){
+            return ResultGenerator.genFailResult("请输入密码！");
+        }
+        if ((user.getQq() == null || user.getQq().trim().length() == 0) &&
+        (user.getTelephone() == null || user.getTelephone().trim().length() == 0)){
+            return ResultGenerator.genFailResult("请输入QQ账号或手机号！");
+        }
+        usersService.save(user);
+
+        Users newUser = usersService.findBy("studentid", user.getStudentid());
+        String tokenString = generateToken(newUser.getIuserSerialNumber(), newUser.getStudentid());
+
+        Cookie tokenCookie = new Cookie(tokenName, tokenString);
+        Cookie stdCookie = new Cookie("studentid", newUser.getStudentid().toString());
+        Cookie idCookie = new Cookie("userid", newUser.getIuserSerialNumber().toString());
+
+        tokenCookie.setMaxAge(maxAge);
+        stdCookie.setMaxAge(maxAge);
+        idCookie.setMaxAge(maxAge);
+
+        httpServletResponse.addCookie(tokenCookie);
+        httpServletResponse.addCookie(stdCookie);
+        httpServletResponse.addCookie(idCookie);
+        return ResultGenerator.genSuccessResult(1, "注册成功！");
+
     }
 
 //    @PostMapping("/logout")
@@ -124,17 +159,32 @@ public class UsersController {
         return DigestUtils.md5Hex(data + secretKey + System.nanoTime());
     }
 
-    @PostMapping("/add")
-    public Result add(Users users) {
-        usersService.save(users);
-        return ResultGenerator.genSuccessResult();
+    private String generateToken(Integer userid, Integer studentid){
+        String tokenString = String.valueOf(jiami(studentid.toString()));
+        Token token = new Token();
+        token.setUserid(userid);
+        token.setStudentid(studentid);
+        token.setTokenstring(tokenString);
+        if (tokenService.findBy("userid", userid) == null){
+            tokenService.save(token);
+        }
+        else{
+            tokenService.update(token);
+        }
+        return tokenString;
     }
 
-    @PostMapping("/delete")
-    public Result delete(Integer id) {
-        usersService.deleteById(id);
-        return ResultGenerator.genSuccessResult();
-    }
+//    @PostMapping("/add")
+//    public Result add(Users users) {
+//        usersService.save(users);
+//        return ResultGenerator.genSuccessResult();
+//    }
+
+//    @PostMapping("/delete")
+//    public Result delete(Integer id) {
+//        usersService.deleteById(id);
+//        return ResultGenerator.genSuccessResult();
+//    }
 
 //    @PostMapping("/update")
 //    public Result update(Users users) {
@@ -148,11 +198,11 @@ public class UsersController {
 //        return ResultGenerator.genSuccessResult(users);
 //    }
 //
-    @PostMapping("/list")
-    public Result list(Integer page, Integer size) {
-        PageHelper.startPage(page, size);
-        List<Users> list = usersService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
-    }
+//    @PostMapping("/list")
+//    public Result list(Integer page, Integer size) {
+//        PageHelper.startPage(page, size);
+//        List<Users> list = usersService.findAll();
+//        PageInfo pageInfo = new PageInfo(list);
+//        return ResultGenerator.genSuccessResult(pageInfo);
+//    }
 }
